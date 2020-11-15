@@ -5,7 +5,6 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class Program {
     public static void main(String[] args) {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
-        List<Seller> list = new ArrayList<>();
+        List<Seller> list = null;
 
         System.out.println("==== Exemple 1 - Department Manual Instance ====");
         Department dep = new Department(1, "Books");
@@ -40,5 +39,10 @@ public class Program {
         for (Seller obj : list) {
             System.out.println(obj);
         }
+
+        System.out.println("\n==== Exemple 6 - Seller insert ====");
+        Seller newSeller = new Seller(null, "Greg", "greg@email.com", new Date(), 4000.0, department);
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted! New Id: " + newSeller.getId());
     }
 }
